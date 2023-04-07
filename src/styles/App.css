@@ -6,12 +6,15 @@
 
 #root{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .SearchPage{
-    width: 900px;
+    display: flex;
+    flex-direction: row;
 }
+
 
 .medicine{
     display: flex;
@@ -53,6 +56,12 @@
     padding: 2px 5px;
 }
 
+button:disabled{
+    background-color: #cccccc;
+    color: #666666;
+}
+
+
 .medcTitle{
     border-bottom: 1px solid rgb(0,0,0,0.2);
     margin-bottom: 4px;
@@ -89,4 +98,190 @@
 .prescription{
     width: 200px;
     text-align: end;
+}
+
+.filterBlock > div {
+    padding-left: 30px;
+}
+
+.filterDiv {
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 15px;
+}
+
+.checkbox-ios {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-ios input[type="checkbox"]:not(:disabled) + .checkbox-ios-switch {
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, .3);
+}
+
+.checkbox-ios.focused .checkbox-ios-switch:before {
+    box-shadow: inset 0px 0px 4px #ff5623;
+}
+
+.checkbox-ios .checkbox-ios-switch {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 40px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 25%/50%;
+    vertical-align: top;
+    background: #eee;
+    transition: .2s;
+}
+.checkbox-ios .checkbox-ios-switch:before {
+    content: '';
+    position: absolute;
+    top: 1.5px;
+    left: 1px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    transition: .15s;
+}
+.checkbox-ios input[type=checkbox] {
+    display: none;
+}
+.checkbox-ios input[type=checkbox]:not(:disabled):active + .checkbox-ios-switch:before {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+}
+
+.checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch {
+    background: #66A5AD;
+}
+
+.checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch:before {
+    transform:translateX(20px);
+}
+
+.checkbox-ios > span {
+    margin-right: 5px;
+}
+
+.filter {
+    margin-right: 15px;
+    margin-top: 50px;
+}
+
+.filterButton{
+    color: #66A5AD;
+    background: transparent;
+    border: 2px solid #66A5AD;
+    border-radius: 6px;
+
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.filterButton button{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    border: 2px solid #66A5AD;
+}
+
+.filterButton button:hover {
+    background-color: #66A5AD;
+    color: white;
+}
+
+.navbar{
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    padding: 0 15px;
+    background-color: #002115;
+}
+
+.navbar__links{
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', serif;
+    font-style: normal;
+}
+
+.navbar__links img{
+    width: 170px;
+    height: 85px;
+}
+
+.navbar__links a {
+    text-decoration: none;
+    color: #FAFAEF;
+    font-size: 20px;
+}
+
+.navbar__links a:last-child{
+    padding-left: 1000px;
+}
+
+.navbar__links a:active {
+    text-decoration: underline;
+}
+
+.navbar__links a:hover {
+    color: #66A5AD;
+}
+.navbar__links button{
+
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.loginContainer h1{
+    font-size: 30px;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.loginContainer form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.loginContainer button{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    border: 2px solid #66A5AD;
+}
+
+.loginContainer button:hover{
+    background-color: #66A5AD;
+    color: white;
 }

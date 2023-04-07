@@ -2,7 +2,18 @@
 
 const Dose = ({dose}) => {
     if(dose.availability === 0) {
-        return;
+        return (
+            <tr className="dose">
+                <td className="package">{dose.package}</td>
+                <td className="price"></td>
+                <td className="available">
+                    <b>not available</b>
+                </td>
+                <td className="medcButton">
+                    <button disabled>Add to cart</button>
+                </td>
+            </tr>
+        );
     }
     return (
         <tr className="dose">
