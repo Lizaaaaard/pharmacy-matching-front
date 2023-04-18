@@ -4,6 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import Navbar from "./components/UI/Navbar/Navbar";
 import AppRouter from "./components/AppRouter";
 import {AuthContext} from "./context";
+import Footer from "./components/UI/Footer/Footer";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <BrowserRouter>
                 <Navbar/>
                 <AppRouter/>
+                <Footer/>
             </BrowserRouter>
         </AuthContext.Provider>
     );

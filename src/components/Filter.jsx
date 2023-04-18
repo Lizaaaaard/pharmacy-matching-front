@@ -1,14 +1,7 @@
 ﻿import React from 'react';
 import $ from 'jquery';
 
-function selectAllBlock(element) {
-    let checkedParentValue = $(element.target)[0].checked;
-    $(element.target).siblings().each(function() {
-        $(this).children()[0].checked = checkedParentValue;
-    });
-}
-
-const Filter = () => {
+const Filter = ({filterMedc}) => {
     $(window).keyup(function(e){
         var target = $('.checkbox-ios input:focus');
         if (e.keyCode == 9 && $(target).length){
@@ -16,9 +9,17 @@ const Filter = () => {
         }
     });
 
+    function selectAllBlock(element) {
+        let checkedParentValue = $(element.target)[0].checked;
+        $(element.target).siblings().each(function() {
+            $(this).children()[0].checked = checkedParentValue;
+        });
+    }
+
     $('.checkbox-ios input').focusout(function(){
         $(this).parent().removeClass('focused');
     });
+    
     return (
         <div className="filter">
             <div className="releaseForm filterDiv">
@@ -77,6 +78,9 @@ const Filter = () => {
                     <div>
                         <input type="checkbox" name="india"/>India
                     </div>
+                    <div>
+                        <input type="checkbox" name="germany"/>Germany
+                    </div>
                 </div>
             </div>
             <div className="filterDiv">
@@ -86,11 +90,11 @@ const Filter = () => {
                 </label>
                 <label className="checkbox-ios">
                     <input type="checkbox" name="need"/>
-                    <span className="checkbox-ios-switch"></span>Prescription doesn't need
+                    <span className="checkbox-ios-switch"></span>Need prescription
                 </label>
             </div>
             <div className="filterButton">
-                <button>Apply filter</button>
+                <button onClick={filterMedc}>Apply filter</button>
             </div>
         </div>
     );

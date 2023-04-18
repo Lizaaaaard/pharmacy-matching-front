@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
 .SearchPage{
@@ -87,12 +88,16 @@ button:disabled{
     font-size: 15px;
 }
 
+.notes{
+    padding: 0 50px;
+}
+
 .medcInfo tr{
     height: 26px;
 }
 
 .name{
-    width:300px;
+    width:250px;
 }
 
 .prescription{
@@ -102,6 +107,10 @@ button:disabled{
 
 .filterBlock > div {
     padding-left: 30px;
+}
+
+.filter input{
+    margin-right: 8px;
 }
 
 .filterDiv {
@@ -179,19 +188,17 @@ input {
 }
 
 .filterButton{
-    color: #66A5AD;
     background: transparent;
-    border: 2px solid #66A5AD;
     border-radius: 6px;
-
     border: none;
     color: white;
-    padding: 16px 32px;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 20px;
     text-align: center;
-    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
     text-decoration: none;
@@ -239,15 +246,11 @@ input {
 }
 
 .navbar__links a:last-child{
-    padding-left: 1000px;
-}
-
-.navbar__links a:active {
-    text-decoration: underline;
+    margin-left: 1000px;
 }
 
 .navbar__links a:hover {
-    color: #66A5AD;
+    text-decoration: underline;
 }
 .navbar__links button{
 
@@ -284,4 +287,102 @@ input {
 .loginContainer button:hover{
     background-color: #66A5AD;
     color: white;
+}
+
+.searchWrap{
+    flex: 1;
+}
+
+.searchContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+
+}
+
+.searchContainer input{
+    margin-bottom: 0;
+    height: 30px;
+    width: 700px;
+
+    border: 1px solid #002115;
+    border-radius: 15px;
+    color: #002115;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+#inputText{
+    background: url(./images/search.svg) no-repeat 6px 4.5px;
+    background-size: 18px;
+    padding-left: 30px;
+}
+
+.searchContainer button{
+    margin-left: 10px;
+    background-color: #66A5AD;
+    color: #F5F5F5;
+    padding: 0 12px 0 12px;
+    border: 0.5px solid #002115;
+    border-radius: 7px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.searchContainer button:hover{
+    background-color: #07575B;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.description{
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+}
+
+.descriptionElement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.descriptionTitle{
+    margin-top: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.descriptionText{
+    margin-top: 10px;
+    width: 360px;
+    text-align: center;
+}
+
+.footer{
+    
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    background: rgba(0, 33, 21, 0.84);
+}
+
+.medcArea {
+    width: 960px;
+}
+
+.noMedcMsg{
+    padding-top: 20px;
 }

@@ -1,15 +1,13 @@
 ﻿import React, {useContext} from 'react';
 import {Route, Routes} from "react-router-dom";
-import About from "../pages/About";
-import Medicines from "../pages/Medicines";
-import Error from "../pages/Error";
-import Login from "../pages/Login";
 import {AuthContext} from "../context";
 import {routes} from "../router";
+import Search from "../pages/Search";
+import Medicines from "../pages/Medicines";
 
 const AppRouter = () =>{
     const {isAuth, setIsAuth} = useContext(AuthContext);
-    console.log(isAuth);
+    // console.log(isAuth);
     return(
         <Routes>
             {routes.map(route => 
@@ -20,7 +18,7 @@ const AppRouter = () =>{
                     key={route.path}
                 />
             )}
-                <Route path='*' Component={About}/>
+            <Route path='*' Component={Search}/>
         </Routes>
     );
 };

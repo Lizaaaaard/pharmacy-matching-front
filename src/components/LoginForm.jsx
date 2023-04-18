@@ -1,19 +1,15 @@
-﻿import React, {useContext, useState} from 'react';
+﻿import React, {useContext} from 'react';
 import {AuthContext} from "../context";
-import LoginForm from "../components/LoginForm";
 
-const Login = () => {
+const LoginForm = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext);
-    const [inputLogin, setInputLogin] = useState('');
-    const login = event =>{
+    function login (event){
         event.preventDefault();
         setIsAuth(true);
-        sessionStorage.setItem('auth','true')
     }
     
     return (
-        <div className="loginContainer">
-            <h1>LogIn</h1>
+        <div className='loginForm__container'>
             <form onSubmit={login}>
                 <input
                     type='text'
@@ -28,4 +24,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginForm;
