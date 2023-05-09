@@ -1,4 +1,4 @@
-﻿import React, {useEffect, useState} from 'react';
+﻿import React, {useContext, useEffect, useState} from 'react';
 import MedcItem from "./MedcItem";
 import MedcService from "../API/MedcService";
 import {useFetching} from "../hooks/useFetching";
@@ -6,27 +6,45 @@ import {getPageCount, getPagesArray} from "../utils/pages";
 import $ from "jquery";
 import Filter from "./Filter";
 import SearchTitle from "./SearchTitle";
+import Loader from "./UI/Loader/Loader";
+import {CartContext} from "../context";
 
 const MedcList = ({search}) => {
     const [medc, setMedc] = useState([]);
+    const [pageMedc, setPageMedc] = useState([]);
     const [filteredMedc, setFilteredMedc] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [limit, setLimit] = useState(10);
-    let pagesArray = getPagesArray(totalPages);
+    const [limit, setLimit] = useState(5);
+    const [pagesArray, setPagesArray] = useState([]);
     
     const [fetchMedc, isLoading, errorMedc] = useFetching(async () => {
-        let response = await MedcService.getAll(limit, page);
-        const totalCount = await MedcService.getTotalCount();
-        setMedc([...response.data]);
-        setFilteredMedc([...response.data]);
-        setTotalPages(getPageCount(totalCount.data, limit));
+            let response = await MedcService.getAll();
+            setMedc(response);
+            setFilteredMedc(response);
     });
 
     useEffect(() => {
         fetchMedc();
     }, []);
 
+    useEffect(() => {
+        if (filteredMedc.length !== 0) {
+            let newTotalPages = Math.ceil(filteredMedc.length / 5);
+            setTotalPages(newTotalPages);
+            setPagesArray(getPagesArray(newTotalPages));
+            setPage(1);
+        }
+    }, [filteredMedc]);
+
+    useEffect(() => {
+        let pMedc = [];
+        for (let i = (page - 1) * limit; i < page * limit && i < filteredMedc.length; i++) {
+            pMedc.push(filteredMedc[i]);
+        }
+        setPageMedc(pMedc);
+    }, [page , filteredMedc]);
+    
     function filterMedc()  {
         filterMedcByForm();
     }
@@ -91,6 +109,10 @@ const MedcList = ({search}) => {
         setFilteredMedc(validMedc);
     }
     
+    function changePage (p) {
+        setPage(p);
+    }
+    
     return (
         
         <div>
@@ -100,25 +122,33 @@ const MedcList = ({search}) => {
                 </div>
                 <div className="elements">
                     <SearchTitle search={search}/>
-                    <div className="medcArea">
-                    { filteredMedc.length === 0 
-                        ? <div>
-                            <h1 className="noMedcMsg">
-                            There are no medicines satisfying such criterias.
-                            </h1>
-                        </div> 
-                        : <div>
-                            <div>
-                                {filteredMedc.filter(med => med.title.toLowerCase().includes(search.toLowerCase()))
-                                    .map(med => <MedcItem medc={med} key={med.id}/>
-                                    )}
+                    {
+                        isLoading 
+                        ? <Loader/>
+                        :<div className="medcArea">
+                                { pageMedc.length === 0
+                                    ? <div>
+                                        <h1 className="noMedcMsg">
+                                            There are no medicines satisfying such criterias.
+                                        </h1>
+                                    </div>
+                                    : <div>
+                                        <div>
+                                            {pageMedc.filter(med => med.title.toLowerCase().includes(search.toLowerCase()))
+                                                .map(med => <MedcItem medc={med} key={med.id}/>
+                                                )}
+                                        </div>
+                                        <div className="paggination">
+                                            {pagesArray.map(
+                                            function (p){
+                                                return (p === page)
+                                                    ? <button className="buttonHovering selectedButton" onClick={() => changePage(p)}>{p}</button> 
+                                                    : <button className="buttonHovering" onClick={() => changePage(p)}>{p}</button>
+                                            })}
+                                        </div>
+                                    </div>}
                             </div>
-                            <div className="paggination">
-                                {pagesArray.map(p=>
-                                    <button>{p}</button>)}
-                            </div>
-                        </div>}
-                    </div>
+                    }
                 </div>
             </div>
         </div>

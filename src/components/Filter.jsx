@@ -44,7 +44,7 @@ const Filter = ({filterMedc}) => {
                         <input type="checkbox" name="syrup"/>syrup
                     </div>
                     <div>
-                        <input type="checkbox" name="potion"/>potion
+                        <input type="checkbox" name="drops"/>potion
                     </div>
                     <div>
                         <input type="checkbox" name="gel"/>gel

@@ -1,27 +1,18 @@
-﻿import React, {useEffect, useState} from "react";
+﻿import React, {useContext, useEffect, useState} from "react";
 import '../styles/App.css';
 import MedcList from "../components/MedcList";
 import SearchTitle from "../components/SearchTitle";
 import Filter from "../components/Filter";
 import {useLocation} from "react-router-dom";
 import $ from 'jquery';
+import {SearchContext} from "../context";
 
 
 function Medicines() {   
-    let searchValue;
-    let location = useLocation();
-    
-    useState(() => {
-        let queryParams = new URLSearchParams(location.search);
-        searchValue = queryParams.get('searchValue');
-    }, []);
+    const{searchValue, setSearchValue} = useContext(SearchContext);
     
     return (
-        <div className="App">
-            
-                    <MedcList search={searchValue}/>
-              
-        </div>
+        <MedcList search={searchValue}/>
     );
 }
 

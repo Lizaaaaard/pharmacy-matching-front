@@ -3,16 +3,9 @@
 const API_URL = 'https://localhost:44372/PharmacyMatching';
 
 export default class MedcService {
-    static async getAll(limit = 10, page = 1) {
-        const config = {
-            method: 'get',
-            url: API_URL + '/medicinesByPage',
-            params: {
-                page: page,
-                limit: limit
-            }
-        }
-        return axios(config);
+    static async getAll() {
+        const response = await axios.get(API_URL + '/medicines');
+        return response.data;
     }
 
     static async getTotalCount() {
@@ -20,6 +13,6 @@ export default class MedcService {
             method: 'get',
             url: API_URL + '/medicines/count'
         }
-        return axios(config);
+        return await axios.get(API_URL + '/medicines/count');
     }
 }

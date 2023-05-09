@@ -4,7 +4,7 @@ import LoginForm from "../components/LoginForm";
 
 const Login = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext);
-    const [inputLogin, setInputLogin] = useState('');
+
     const login = event =>{
         event.preventDefault();
         setIsAuth(true);
@@ -13,17 +13,12 @@ const Login = () => {
     
     return (
         <div className="loginContainer">
-            <h1>LogIn</h1>
-            <form onSubmit={login}>
-                <input
-                    type='text'
-                    placeholder='Login'
-                    /*value={inputLogin}
-                    onChange={e => setInputLogin(e.target.value)*/
-                />
-                <input type ='password' placeholder='Password'></input>
-                <button>Log In</button>
-            </form>
+            <div className="loginContainer__title">
+                <hr></hr>
+                <h1>Log In</h1>
+                <hr></hr>
+            </div>
+            <LoginForm/>
         </div>
     );
 };

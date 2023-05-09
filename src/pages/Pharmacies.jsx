@@ -1,10 +1,11 @@
-﻿import React from 'react';
+﻿import React, {useState} from 'react';
 import PharmTitle from "../components/PharmTitle";
 import PharmsList from "../components/PharmsList";
 
 const Pharmacies = () => {
+   
     return (
-        <div>
+        <div className="pharmacies">
             <PharmTitle/>
             <PharmsList/>
         </div>

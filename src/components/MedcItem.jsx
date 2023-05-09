@@ -20,7 +20,7 @@ const MedcItem = ({medc}) => {
             </table>
             <table className="medcInfo">
                 <tbody>
-                    {medc.doses.map(dose => <Dose key={dose.id} dose={dose}/>)}
+                    {medc.doses.map(dose => <Dose key={dose.id} dose={dose} medc={medc}/>)}
                 </tbody>
             </table>
         </div>

@@ -5,10 +5,39 @@
 }
 
 #root{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    background: #F5F5F5;
+}
+
+body{
+    font-family: 'Inter' !important;
+    font-style: normal;
+    font-weight: normal !important;
+     line-height: normal !important;
+     color: black !important;
+     text-align: start !important; 
+     background-color: #F5F5F5 !important;
+}
+
+button, input, optgroup, select, textarea {
+     font-family: 'Inter' !important; 
+     font-size: 15px !important;
+    line-height: normal !important;
+}
+
+.buttonHovering:hover{
+    background: #07575B;
+    border: 1px solid #003B46;
+    border-radius: 2px;
+    color: #FAFAEF;
+}
+
+.selectedButton{
+    background: #66A5AD;
+    border: 0.5px solid #002115;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    text-decoration: underline;
 }
 
 .SearchPage{
@@ -16,6 +45,13 @@
     flex-direction: row;
 }
 
+.App {
+    min-height: calc(100% - 200px);
+    padding-bottom: 50px;
+    background: #F5F5F5;
+    display: flex;
+    justify-content: center;
+}
 
 .medicine{
     display: flex;
@@ -40,13 +76,14 @@
 }
 
 .medcButton{
-    width:90px;
+    width:103px;
 }
 
 .medcButton > button{
     background-color: #66A5AD;
     border: 0.5px solid #002115;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    min-width: 103px;
     border-radius: 1px;
     font-family: 'Inter';
     font-style: normal;
@@ -61,7 +98,6 @@ button:disabled{
     background-color: #cccccc;
     color: #666666;
 }
-
 
 .medcTitle{
     border-bottom: 1px solid rgb(0,0,0,0.2);
@@ -120,7 +156,7 @@ button:disabled{
 }
 
 input {
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
 }
 
 .checkbox-ios {
@@ -218,23 +254,116 @@ input {
     color: white;
 }
 
+.paggination{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.paggination button{
+    padding: 5px;
+    color: black;
+    background: #66A5AD;
+    border: 0.5px solid #002115;
+    border-radius: 3px;
+}
+
 .navbar{
     height: 100px;
-    width: 100vw;
+    width: 100%;
     display: flex;
+    align-items: center;
     padding: 0 15px;
     background-color: #002115;
 }
 
 .navbar__links{
-    margin-right: auto;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     align-items: center;
     font-family: 'Inter', serif;
     font-style: normal;
 }
 
-.navbar__links img{
+.dropdown {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+}
+
+.dropdown-space {
+    height: 21px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    color: #F5F5F5;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    background: #002115;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: #07575B;
+    color: #F5F5F5 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.dropheader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.bi-person-circle {
+    color: #F5F5F5;
+    font-size: 40px;
+}
+
+.bi-caret-down-fill {
+    color: #F5F5F5;
+    font-size: 25px;
+    padding: 6px 5px 0;
+}
+
+.dropdown-play-fill {
+    display: flex;
+    justify-content: flex-end;
+    background-color:rgba(0, 0, 0, 0);
+    margin: 0 -4px -6px 0;
+}
+
+.bi-play-fill {
+    font-size: 16px;
+    transform: rotate(-90deg);
+    color: #002115;
+}
+
+.loginLink {
+    margin-right:20px;
+}
+
+.directionLinks {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__links img {
     width: 170px;
     height: 85px;
 }
@@ -245,28 +374,68 @@ input {
     font-size: 20px;
 }
 
-.navbar__links a:last-child{
-    margin-left: 1000px;
-}
-
 .navbar__links a:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: white !important;
 }
-.navbar__links button{
 
+.cartLink {
+    display: flex !important;
+    flex-direction: row;
+}
+
+.bi-basket-fill {
+    margin: 0 5px;
+}
+
+.cartSize {
+    font-size: 8px;
+    border: #F5F5F5 solid;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+    color: #002115;
+    height: 10px;
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loginContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    margin: 10px;
+    width: 382px;
+    height: 258px;
+    background: #C4DFE6;
+    border: 2px solid #003B46;
+    border-radius: 30px;
+}
+
+.loginContainer__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.loginContainer__title hr{
+    width: 115.5px;
+    height: 0px;
+    border: 1.5px solid #003B46;
 }
 
 .loginContainer h1{
-    font-size: 30px;
-    font-family: 'Inter';
+    text-transform: uppercase;
+    font-family: 'Gothic A1';
     font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #003B46;
+    margin: 15px 9px 10px;
+
 }
 
 .loginContainer form{
@@ -277,20 +446,159 @@ input {
 }
 
 .loginContainer button{
-    background-color: white;
     padding: 5px;
-    border-radius: 5px;
-    color: black;
-    border: 2px solid #66A5AD;
+    width: 142px;
+    height: 33px;
+    background: #66A5AD;
+    border: 1.5px solid #002115;
+    border-radius: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #F5F5F5;
+    margin-top: 10px;
 }
 
-.loginContainer button:hover{
-    background-color: #66A5AD;
-    color: white;
+.loginContainer button:hover {
+    background-color: #07575B;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.loginForm__container input{
+    width: 332px;
+    height: 25px;
+    background: #F9F9FF;
+    border: 1.5px solid #07575B;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #07575B;
+}
+
+.loginForm__container form{
+    align-items: center;
+}
+
+#loginValue{
+    background: url(./images/person.svg) no-repeat #F9F9FF 6px 4.5px;
+    padding-left: 30px;
+}
+
+#passwordValue{
+    background: url(./images/key.svg) no-repeat #F9F9FF 6px 4px;
+    padding-left: 30px;
+}
+
+.loginForm__links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.loginForm__links a {
+    color: #003B46;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.loginForm__links a:hover{
+    text-decoration: underline !important;
+    color: #003B46 !important;
+}
+
+.registerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 382px;
+    height: 300px;
+    background: #C4DFE6;
+    border: 2px solid #003B46;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+.registerContainer__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.registerContainer__title h1{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #003B46;
+    margin: 15px 9px 10px;
+    text-transform: uppercase;
+}
+
+.registerContainer__title hr{
+    width: 109px;
+    height: 0;
+    border: 1.5px solid #003B46;
+}
+
+.registerForm form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registerForm input{
+    width: 332px;
+    height: 25px;
+    padding-top: 1px;
+}
+
+.registerForm button{
+    padding: 5px;
+    width: 142px;
+    height: 33px;
+    background: #66A5AD;
+    border: 1.5px solid #002115;
+    border-radius: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #F5F5F5;
+
+}
+
+.registerForm button:hover{
+    background-color: #07575B;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+#emailValue{
+    background: url(./images/envelope.svg) no-repeat #F9F9FF 6px 2.5px;
+    padding-left: 30px;
+}
+
+#numberValue{
+    background: url(./images/telephone.svg) no-repeat #F9F9FF 6px 3px;
+    padding-left: 30px;
 }
 
 .searchWrap{
-    flex: 1;
+    background: #F5F5F5;
+    width: 100%;
 }
 
 .searchContainer{
@@ -325,6 +633,7 @@ input {
     margin-left: 10px;
     background-color: #66A5AD;
     color: #F5F5F5;
+    height: 30px;
     padding: 0 12px 0 12px;
     border: 0.5px solid #002115;
     border-radius: 7px;
@@ -345,11 +654,13 @@ input {
     display: flex;
     flex-direction: row;
     margin-top: 70px;
+    justify-content: center;
 }
 
 .descriptionElement{
     display: flex;
     flex-direction: column;
+    max-width: 300px;
     align-items: center;
     justify-content: center;
 }
@@ -369,14 +680,13 @@ input {
 }
 
 .footer{
-    
+    width: 100%;
     height: 100px;
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     color:white;
-    background: rgba(0, 33, 21, 0.84);
+    background: #002115;
 }
 
 .medcArea {
@@ -385,4 +695,273 @@ input {
 
 .noMedcMsg{
     padding-top: 20px;
+}
+
+.pharmacies{
+    display: flex;
+    flex-direction: column;
+}
+
+.pharmacies__title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 15px;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pharmaciesTable{
+    border: 2px solid black ;
+}
+
+.pharmacies th {
+    border: 1px solid black;
+    text-align: center !important;
+    padding: 7px 0 !important;
+}
+
+.pharmacies td {
+    border: 1px solid black;
+}
+
+
+.pharmaciesHeader{
+    color: #FAFAEF;
+    background: #07575B;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #000000;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+   
+}
+
+.phHeaderName {
+    width: 190px;
+}
+
+.phHeaderAddress {
+    width: 180px;
+}
+
+.phHeaderWH {
+    width: 400px;
+}
+
+.phHeaderPhNum {
+    width: 170px;
+}
+
+.pharmaciesElements{
+    background: #C4DFE6;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #000000;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 45px;
+
+    color: #000000;
+
+}
+
+td {
+    padding: 0 4px;
+}
+
+.cartTitle h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #002115;
+}
+
+.cartTable {
+    border-collapse: collapse;
+}
+
+.cartHeader {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #003B46;
+    border-bottom: 3px solid #003B46 !important;
+}
+
+.cartHeader th{
+    padding: 8px 0;
+}
+
+.cartItemName {
+    width: 240px;
+}
+
+.cartItemDose {
+    width: 240px;
+}
+
+.cartItemProducer {
+    width: 190px;
+}
+
+.cartItemPrice {
+    width: 90px;
+}
+
+.cartItemAmount {
+    width: 100px;
+}
+
+.cartItemSum {
+    width: 100px;
+}
+
+.cartTableRow td{
+    padding: 18px 0;
+}
+
+.quantityMedcInPharm button {
+    padding: 0 5px;
+}
+
+.decreaseBtn {
+    margin-right: 10px;
+    border: none;
+}
+
+.increaseBtn {
+    margin-left: 10px;
+    border: none;
+}
+
+.deleteBtnMedInPharm button {
+    border: none;
+}
+
+.deleteBtnMedInPharm i:hover{
+    color:#66A5AD;
+}
+
+.bi-x-circle-fill {
+    color: #003B46;
+}
+
+.cartItemDel {
+    width: 45px;
+}
+
+.cartTable {
+    border-bottom: 3px solid #003B46 !important;
+}
+
+.underCart {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.totalAmount {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+
+    color: #002115;
+}
+
+.totalPrice {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 25px;
+    color: #002115;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+
+.priceValue {
+    color: #66A5AD !important;
+    -webkit-text-stroke: 0.3px #002115;
+}
+
+.checkOutBtn button{
+    width: 236px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    text-transform: uppercase;
+    text-align: center;
+    color: #F5F5F5;
+    background: #66A5AD;
+    border: 2px solid #002115;
+    border-radius: 2px;
+    padding: 3px 15px;
+}
+
+.checkOutBtn button:hover {
+    background: #07575B;
+    color: #F5F5F5 !important;
+}
+
+.shoppingBtn button {
+    width: 236px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    text-transform: uppercase;
+    text-align: center;
+    color: #66A5AD;
+    -webkit-text-stroke: 0.3px #002115;
+    background: #F5F5F5;
+    border: 2px solid #002115 !important;
+    border-radius: 2px;
+    padding: 3px 15px;
+}
+
+.shoppingBtn button:hover {
+    background: #07575B;
+    color: #F5F5F5 !important;
+    -webkit-text-stroke: 0 white;
+}
+
+.orderFunctional {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orCart {
+    font-family: 'Inder';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    color: #000000;
+    text-transform: uppercase;
+    padding: 5px 0;
 }
