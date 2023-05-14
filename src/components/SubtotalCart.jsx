@@ -1,8 +1,15 @@
 ﻿import React, {useContext, useState} from 'react';
 import {CartPriceContext} from "../context";
+import {useNavigate} from "react-router-dom";
 
-const SubtotalCart = ({count}) => {
+const SubtotalCart = ({count, proceed}) => {
     const {resultSum, setResultSum} = useContext(CartPriceContext);
+
+    const navigate = useNavigate();
+    function redirectHome() {
+        navigate('/search');
+    }
+    
     return (
         <div className="underCart">
             <div className="totalAmount">
@@ -14,11 +21,11 @@ const SubtotalCart = ({count}) => {
                 </div>
                 <div className="cartButtons">
                     <div className="checkOutBtn">
-                        <button>proceed to checkout</button>
+                        <button onClick={proceed}>proceed to checkout</button>
                     </div>
                     <div className="orCart">or</div>
                     <div className="shoppingBtn">
-                        <button>continue shopping</button>
+                        <button onClick={redirectHome}>continue shopping</button>
                     </div>
                 </div>
                 

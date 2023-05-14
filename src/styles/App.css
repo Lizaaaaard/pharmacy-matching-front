@@ -266,6 +266,7 @@ input {
     background: #66A5AD;
     border: 0.5px solid #002115;
     border-radius: 3px;
+    margin-right: 5px;
 }
 
 .navbar{
@@ -697,9 +698,69 @@ a:hover {
     padding-top: 20px;
 }
 
-.pharmacies{
+.underPharmTable{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.emptySpace {
+    width: 116px;
+}
+
+.addPharmacyBtn {
+    padding-top: 10px;
+}
+
+.addPharmacyBtn button {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    text-align: center;
+    color: #F5F5F5;
+    background: #66A5AD;
+    border: 2px solid #002115;
+    border-radius: 2px;
+    padding: 3px 9px;
+}
+
+.addPharmacyBtn button:hover {
+    background: #07575B;
+    color: #F5F5F5 !important;
+}
+
+.addPharmacyForm {
     display: flex;
     flex-direction: column;
+}
+
+.addPharmacyForm button {
+    width: 190px;
+    margin-left: 30px;
+}
+
+.addPharmacyForm input {
+    background: #F9F9FF;
+    border-radius: 6px;
+    border: 2px solid #07575B;
+    width: 250px;
+    height: 25px;
+}
+
+.addPharmacyForm h1 {
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: #003B46;
+}
+
+.pharmacies{
+    
 }
 
 .pharmacies__title{
@@ -777,6 +838,29 @@ a:hover {
 
 td {
     padding: 0 4px;
+}
+
+.cartPage {
+    display: flex;
+    flex-direction: column;
+}
+
+.availablePharmaciesList {
+    display: flex;
+    flex-direction: row;
+}
+
+.availablePharmacy {
+    border: 2px solid #003B46;
+    color: #003B46;
+    background: #C4DFE6;
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.selectedPharmacy {
+    border-bottom: none;
+    background-color: #F5F5F5;
 }
 
 .cartTitle h1 {
@@ -965,3 +1049,172 @@ td {
     text-transform: uppercase;
     padding: 5px 0;
 }
+
+.userProfile {
+    display: flex;
+    flex-direction: row;
+}
+
+.userInfo {
+    background-color: #C4DFE6;
+    padding: 25px;
+    border: 2px solid #003B46;
+    border-radius: 30px;
+    width: 350px;
+    margin-right: 77px;
+}
+
+.Profile h1{
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 40px;
+    text-align: center;
+    color: #003B46;
+    padding: 10px;
+}
+
+.profileLogin input {
+    background: #F9F9FF;
+    border: 1.5px solid #07575B;
+    width: 190px;
+}
+
+.profileEmail input {
+    background: #F9F9FF;
+    border: 1.5px solid #07575B;
+    width: 190px;
+}
+
+.profilePhoneNum input {
+    background: #F9F9FF;
+    border: 1.5px solid #07575B;
+    width: 190px;
+}
+
+.userInfo >div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.saveChangesBtn {
+    justify-content: center !important;
+}
+
+.saveChangesBtn button{
+    padding: 5px;
+    width: 142px;
+    height: 33px;
+    background: #66A5AD;
+    border: 1.5px solid #002115;
+    border-radius: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #F5F5F5;
+    margin-top: 10px;
+}
+
+.saveChangesBtn button:hover {
+    background-color: #07575B;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.userInfo h1 {
+    font-size: 27px;
+    line-height: 29px;
+    padding-bottom: 7px;
+}
+
+.history {
+    background-color: #C4DFE6;
+    padding: 25px;
+    border: 2px solid #003B46;
+    border-radius: 30px;
+    width: 650px;
+}
+
+.history h1 {
+    font-size: 27px;
+    line-height: 29px;
+    padding-bottom: 7px;
+}
+
+.booking {
+    background-color: #F5F5F5;
+    border: 2px solid #003B46;
+    border-radius: 6px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.historyTable {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.historyTable th {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    border-bottom: 2px solid #003B46;
+    color: #07575B;
+    padding-left: 5px;
+}
+
+.historyTableRow {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.historyTableRow td {
+    padding-top: 4px;
+    padding-left: 5px;
+}
+
+.historyTableRow td:nth-child(1) {
+    padding-left: 10px;
+}
+
+.historyTableRow:hover {
+    cursor: pointer; 
+}
+
+.orderDetailsHeader th{
+    border-bottom: 2px solid #003B46;
+    padding-right: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #003B46;
+}
+
+.orderDetailsBody td {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+    padding-top: 3px;
+}
+
+.orderDetailsBody td:nth-child(3) {
+    text-align: center;
+    padding-right: 22px;
+}
+

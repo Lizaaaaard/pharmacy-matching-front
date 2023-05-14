@@ -13,8 +13,13 @@ const RegisterForm = () => {
         if(checkPasswords(userPassword, repeatPassword)){
             let request = {UserName: usernameValue, Email: userEmail, PhoneNumber: userPhone, Password: userPassword};
             await AuthService.register(request)
-                .then(response => sessionStorage.setItem("token", response.data))
+                .then(response => {
+                    sessionStorage.setItem("token", response.data);
+                    sessionStorage.setItem("auth", true);
+                    sessionStorage.setItem("login", usernameValue);
+                })
                 .catch(err => alert(err.response.data));
+            
             redirectHome();
         }
     });
@@ -29,6 +34,7 @@ const RegisterForm = () => {
             return true;
         }
         else{
+            alert("passwords doesn't match")
             console.log("wrong")
             return false;
         }

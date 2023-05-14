@@ -1,10 +1,17 @@
-﻿import React, {useEffect, useState} from 'react';
+﻿import React, {useContext, useEffect, useState} from 'react';
 import {useFetching} from "../hooks/useFetching";
 import PharmsService from "../API/PharmsService";
 import PharmItem from "./PharmItem";
 import {getPagesArray} from "../utils/pages";
+import NewPharmModal from "./UI/Modal/NewPharmModal";
+import AddPharmacyForm from "./AddPharmacyForm";
+import {UserRoleContext} from "../context";
+import AdminService from "../API/AdminService";
 
 const PharmsList = () => {
+    const {userRole, setUserRole} = useContext(UserRoleContext);
+    const [checkCounter, setCheckCounter] = useState(0);
+    const [modal, setModal] = useState(false);
     const [pagePharm, setPagePharm] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [limit, setLimit] = useState(8);
@@ -18,13 +25,13 @@ const PharmsList = () => {
 
     useEffect(() => {
         fetchPharms()
-    }, []);
+    }, [checkCounter]);
 
     useEffect(() => {
-            let newTotalPages = Math.ceil(pharms.length / 8);
-            setTotalPages(newTotalPages);
-            setPagesArray(getPagesArray(newTotalPages));
-            setPage(1);
+        let newTotalPages = Math.ceil(pharms.length / 8);
+        setTotalPages(newTotalPages);
+        setPagesArray(getPagesArray(newTotalPages));
+        setPage(1);
     }, [pharms]);
 
     useEffect(() => {
@@ -33,10 +40,15 @@ const PharmsList = () => {
             pPharm.push(pharms[i]);
         }
         setPagePharm(pPharm);
-    }, [page , pharms]);
-    
-    function changePage (p) {
+    }, [page, pharms]);
+
+    function changePage(p) {
         setPage(p);
+    }
+
+    function addPharmacy(pharmacy) {
+        setModal(false);
+        AdminService.addPharmacy(pharmacy).then(()=> setCheckCounter(checkCounter + 1));
     }
     
     return (
@@ -62,13 +74,31 @@ const PharmsList = () => {
                 {pagePharm.map(ph => <PharmItem pharms={ph}/>)}
                 </tbody>
             </table>
-            <div className="paggination">
-                {pagesArray.map(
-                    function (p){
-                        return (p === page)
-                            ? <button className="buttonHovering selectedButton" onClick={() => changePage(p)}>{p}</button>
-                            : <button className="buttonHovering" onClick={() => changePage(p)}>{p}</button>
-                    })}
+            <div className="underPharmTable">
+                <div className="emptySpace"></div>
+                <div className="paggination">
+                    {pagesArray.map(
+                        function (p) {
+                            return (p === page)
+                                ? <button className="buttonHovering selectedButton"
+                                          onClick={() => changePage(p)}>{p}</button>
+                                : <button className="buttonHovering" onClick={() => changePage(p)}>{p}</button>
+                        })}
+                </div>
+                <div>
+                    {
+                        userRole === "Admin"
+                            ?
+                            <div className="addPharmacyBtn">
+                                <button onClick={() => setModal(true)}>Add pharmacy</button>
+                                <NewPharmModal visible={modal} setVisible={setModal}>
+                                    <AddPharmacyForm addPharmacy={addPharmacy}/>
+                                </NewPharmModal>
+                            </div>
+                            :
+                            <div></div>
+                    }
+                </div>
             </div>
         </div>
     );

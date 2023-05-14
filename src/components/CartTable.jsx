@@ -8,15 +8,15 @@ const CartTable = ({medInPharm}) => {
 
     useEffect(() => {
         let totalSum = 0;
-        for(let i = 0; i < medInPharm.length; i++){
-            let cartElement = cart.filter(cartElement => cartElement.medc.id === medInPharm[i].medcId && cartElement.dose.id === medInPharm[i].doseId)[0];
+        for(let i = 0; i < medInPharm.item2.length; i++){
+            let cartElement = cart.filter(cartElement => cartElement.medc.id === medInPharm.item2[i].medcId && cartElement.dose.id === medInPharm.item2[i].doseId)[0];
             if (cartElement !== undefined) {
-                totalSum += medInPharm[i].price * cartElement.count;
+                totalSum += medInPharm.item2[i].price * cartElement.count;
             }
         }
         setResultSum(totalSum);
         console.log(totalSum);
-    }, []);
+    }, [medInPharm]);
 
     return (
         <div>
@@ -46,7 +46,7 @@ const CartTable = ({medInPharm}) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {medInPharm.map(med => 
+                    {medInPharm.item2.map(med => 
                         <CartTableRow 
                             medInPharm={med} 
                             key={med.id}

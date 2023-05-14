@@ -8,11 +8,11 @@ export default class MedcService {
         return response.data;
     }
 
-    static async getTotalCount() {
+    /*static async getTotalCount() {
         const config = {
             method: 'get',
             url: API_URL + '/medicines/count'
         }
         return await axios.get(API_URL + '/medicines/count');
-    }
+    }*/
 }

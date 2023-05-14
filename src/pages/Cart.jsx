@@ -1,60 +1,96 @@
-﻿import React, {useContext, useState} from 'react';
+﻿import React, {useContext, useEffect, useState} from 'react';
 import CartTable from "../components/CartTable";
-import {CartPriceContext} from "../context";
+import {CartContext, CartPriceContext} from "../context";
 import SubtotalCart from "../components/SubtotalCart";
+import CartService from "../API/CartService";
+import {useNavigate} from "react-router-dom";
+import {useFetching} from "../hooks/useFetching";
+import AvailablePharmaciesList from "../components/AvailablePharmaciesList";
 
 const Cart = () => {
     const [resultSum, setResultSum] = useState(0);
-    const [medInPharm, setMedInPharm] = useState(
-        {
-            item1: {
-                id: 10,
-                name: "Pharmacy №11",
-                description: "Working hours: 8:00 - 21:00, no lunches, no days off",
-                address: "16, Gray-Village avenue",
-                phoneNumber: "3434565768999"
-            },
-            item2: [
-                {
-                    id: 15,
-                    pharmId: 10,
-                    medcId: 1,
-                    doseId: 1,
-                    price: 4.55,
-                    amount: 24
-                },
-                {
-                    id: 16,
-                    pharmId: 10,
-                    medcId: 7,
-                    doseId: 12,
-                    price: 8.20,
-                    amount: 17
-                },
-                {
-                    id: 17,
-                    pharmId: 10,
-                    medcId: 14,
-                    doseId: 5,
-                    price: 24.00,
-                    amount: 19
-                }
-            ]
+    const {cart, setCart} = useContext(CartContext);
+    const [selectedMedInPharm, setSelectedMedInPharm] = useState({item1: {name:''}, item2: []});
+    const [medInPharm, setMedInPharm] = useState([{item1: {}, item2: []}]);
+    const navigate = useNavigate();
+
+    const [fetchCart, isLoading, errorMedc] = useFetching(async () => {
+        let response = await CartService.getPharmMedc(cart);
+        setMedInPharm(response);
+        setSelectedMedInPharm(response[0]);
+    });
+
+    useEffect(() => {
+        fetchCart();
+    }, [])
+
+    function getIdFromJwt(token) {
+        var Buffer = require('buffer/').Buffer;
+        let base64Url = token.split('.')[1]; // token you get
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+        let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
+        return decodedData.id;
+    }
+
+    function proceed() {
+        let userId = getIdFromJwt(sessionStorage.getItem("token"));
+
+        let listOfMedc = selectedMedInPharm.item2.map(function (med) {
+            let orderMedc = {
+                DoseId: med.doseId,
+                MedcId: med.medcId,
+                Amount: cart.filter(cartElement => cartElement.medc.id === med.medcId && cartElement.dose.id === med.doseId)[0].count
+            }
+            return orderMedc;
+        });
+
+        var order = {
+            PharmId: selectedMedInPharm.item1.id,
+            UserId: userId,
+            MedcList: listOfMedc,
+            Price: resultSum
         }
-    );
+
+        CartService.booking(order).then(() => redirectHome());
+    }
+
+    function redirectHome() {
+        console.log(123123)
+        navigate('/search');
+    }
+    
+    function changePharmacy(pharmacy) {
+        let newSelectedMedc = medInPharm.filter(medc => medc.item1 === pharmacy)[0];
+        console.log(newSelectedMedc);
+        setSelectedMedInPharm(newSelectedMedc);
+    }
+
     return (
         <CartPriceContext.Provider value={{
             resultSum,
             setResultSum
         }}>
-        <div>
-            <h1 className="cartTitle">Cart</h1>
-            <CartTable medInPharm={medInPharm.item2}/>
-            <SubtotalCart
-                count={medInPharm.item2.length}
-                totalPrice={resultSum}
-            />
-        </div>
+            <div className="cartPage">
+                <AvailablePharmaciesList selected={selectedMedInPharm} pharmacies={medInPharm.map(medc => medc.item1)} changePharmacy={changePharmacy}/>
+                <div>
+                    <h1 className="cartTitle">Cart</h1>
+                    {
+                        selectedMedInPharm !== undefined ?
+                            <div>
+                                <CartTable medInPharm={selectedMedInPharm}/>
+                                <SubtotalCart
+                                    count={selectedMedInPharm.item2.length}
+                                    totalPrice={resultSum}
+                                    proceed={proceed}
+                                />
+                            </div>
+                            :
+                            <div>No such pharmacies</div>
+                    }
+
+                </div>
+            </div>
+            
         </CartPriceContext.Provider>
     );
 };

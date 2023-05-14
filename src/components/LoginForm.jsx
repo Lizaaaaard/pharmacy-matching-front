@@ -1,11 +1,13 @@
 ﻿import React, {useContext, useState} from 'react';
-import {AuthContext} from "../context";
+import {AuthContext, UserRoleContext} from "../context";
 import {useFetching} from "../hooks/useFetching";
 import AuthService from "../API/AuthService";
 import {Link, useNavigate} from "react-router-dom";
 import Register from "../pages/Register";
+import {Buffer} from "buffer";
 
 const LoginForm = () => {
+    const {userRole, setUserRole} = useContext(UserRoleContext);
     const {isAuth, setIsAuth} = useContext(AuthContext);
     const [inputLogin, setInputLogin] = useState('');
     const [inputPassword, setInputPassword] = useState('');
@@ -14,7 +16,10 @@ const LoginForm = () => {
         await AuthService.login(request)
             .then(response => {
                 sessionStorage.setItem("token", response.data);
+                sessionStorage.setItem("login", inputLogin);
                 sessionStorage.setItem("auth", true);
+                let role = getRoleFromJwt(response.data);
+                setUserRole(role);
                 setIsAuth(true);
                 redirectHome();
             })
@@ -25,6 +30,15 @@ const LoginForm = () => {
              
         
     });
+
+    function getRoleFromJwt (token) {
+        var Buffer = require('buffer/').Buffer;
+        let base64Url = token.split('.')[1]; // token you get
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+        let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
+        return decodedData.role;
+    }
+    
     function login (event){
         event.preventDefault();
         fetchAuth();

@@ -29,11 +29,14 @@ const MedcList = ({search}) => {
     }, []);
 
     useEffect(() => {
-        if (filteredMedc.length !== 0) {
-            let newTotalPages = Math.ceil(filteredMedc.length / 5);
+        let medc = filterMedcByInputSearch(filteredMedc);
+        if (medc.length !== 0) {
+            let newTotalPages = Math.ceil(medc.length / 5);
             setTotalPages(newTotalPages);
             setPagesArray(getPagesArray(newTotalPages));
             setPage(1);
+        } else {
+            setTotalPages(0);
         }
     }, [filteredMedc]);
 
@@ -113,6 +116,10 @@ const MedcList = ({search}) => {
         setPage(p);
     }
     
+    function filterMedcByInputSearch(medc) {
+        return medc.filter(med => med.title.toLowerCase().includes(search.toLowerCase()));
+    }
+    
     return (
         
         <div>
@@ -134,7 +141,7 @@ const MedcList = ({search}) => {
                                     </div>
                                     : <div>
                                         <div>
-                                            {pageMedc.filter(med => med.title.toLowerCase().includes(search.toLowerCase()))
+                                            {filterMedcByInputSearch(pageMedc)
                                                 .map(med => <MedcItem medc={med} key={med.id}/>
                                                 )}
                                         </div>
