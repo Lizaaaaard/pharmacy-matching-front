@@ -6,7 +6,6 @@ import {getPagesArray} from "../utils/pages";
 import NewPharmModal from "./UI/Modal/NewPharmModal";
 import AddPharmacyForm from "./AddPharmacyForm";
 import {UserRoleContext} from "../context";
-import AdminService from "../API/AdminService";
 
 const PharmsList = () => {
     const {userRole, setUserRole} = useContext(UserRoleContext);
@@ -48,7 +47,7 @@ const PharmsList = () => {
 
     function addPharmacy(pharmacy) {
         setModal(false);
-        AdminService.addPharmacy(pharmacy).then(()=> setCheckCounter(checkCounter + 1));
+        PharmsService.addPharmacy(pharmacy).then(()=> setCheckCounter(checkCounter + 1));
     }
     
     return (

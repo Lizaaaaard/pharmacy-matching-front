@@ -7,4 +7,19 @@ export default class PharmsService {
         const response = await axios.get(API_URL + '/pharmacies');
         return response.data;
     }
+
+    static async addPharmacy(pharmacy) {
+        console.log(pharmacy)
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: API_URL + '/pharmacies',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: pharmacy
+        };
+        const response = await axios.request(config);
+        return response;
+    }
 }

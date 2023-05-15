@@ -2,7 +2,7 @@
 import React, {useContext, useState} from "react";
 import companyLogo from "/src/styles/images/logo.jpg";
 import '/src/styles/App.css';
-import {AuthContext, CartContext} from "../../../context";
+import {AuthContext, CartContext, UserRoleContext} from "../../../context";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -10,6 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const Navbar = () => {
   const {isAuth, setIsAuth} = useContext(AuthContext);
   const {cart, setCart} = useContext(CartContext);
+    const {userRole, setUserRole} = useContext(UserRoleContext);
   
   function changeIsAuth(){
       setIsAuth(false);
@@ -23,8 +24,14 @@ const Navbar = () => {
               <div className="directionLinks">
                   <Link to='/search'><img src={companyLogo} alt='Pharmacy Matching logo'/></Link>
                   <Link to='/pharmacies'>Pharmacies</Link>
+                  {userRole === "Admin" && isAuth === true
+                      ?
+                      <div className="manageOrders">
+                          <Link to="/manage-orders">Manage orders</Link>
+                      </div>
+                      :<div></div>
+                  }
               </div>
-              
               <div className="loginLink">
                   {isAuth===true?
                       <div className="dropdown">

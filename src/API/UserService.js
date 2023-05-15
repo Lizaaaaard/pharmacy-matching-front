@@ -34,4 +34,9 @@ export default class UserService {
         });
         return response.data;
     }
+
+    static async getUsersHistory() {
+        const response = await axios.get(API_URL + '/users/orders');
+        return response.data;
+    }
 }

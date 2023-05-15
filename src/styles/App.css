@@ -1192,6 +1192,11 @@ td {
     cursor: pointer; 
 }
 
+/*.manageOrders {
+    display: flex;
+    flex-direction: column;
+}*/
+
 .orderDetailsHeader th{
     border-bottom: 2px solid #003B46;
     padding-right: 25px;
@@ -1201,6 +1206,7 @@ td {
     font-size: 18px;
     line-height: 23px;
     color: #003B46;
+    width: 50px;
 }
 
 .orderDetailsBody td {
@@ -1218,3 +1224,117 @@ td {
     padding-right: 22px;
 }
 
+.orderList {
+    background-color: #F5F5F5;
+    border-radius: 6px;
+    width: 740px;
+    padding-bottom: 15px;
+}
+
+/*.orderList th{
+    border:2px solid black;
+}*/
+
+.orderListTable {
+    width: 100%;
+}
+
+.orderListTable th {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    border-bottom: 2px solid #003B46;
+    color: #07575B;
+    padding-left: 5px;
+}
+
+.orderTableRow {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}
+
+
+.orderTableRow td {
+    padding-top: 4px;
+    padding-left: 5px;
+}
+
+.orderTableRow td:nth-child(1) {
+    padding-left: 10px;
+}
+
+.orderTableRow:hover {
+    cursor: pointer;
+}
+
+.manageOrders {
+    margin-left: 20px;
+}
+
+.manageOrders h1 {
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #003B46;
+    padding-top: 10px;
+}
+
+.underTableBtns {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.downloadBtns {
+    display: flex;
+    flex-direction: column;
+}
+
+.downloadBtns button{
+    background-color: #66A5AD;
+    border: 0.5px solid #002115;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    min-width: 103px;
+    border-radius: 4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 15px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 2px 5px;
+}
+
+.downloadBtns button:hover {
+    background: #07575B;
+    border: 1px solid #003B46;
+    color: #FAFAEF;
+}
+
+.jsonBtn {
+    margin-top:5px
+}
+
+.orderTableBtn button{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    border: 2px solid #66A5AD;
+}
+
+.orderTableBtn button:hover {
+    background-color: #66A5AD;
+    color: white;
+}

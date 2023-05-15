@@ -7,7 +7,7 @@ const SubtotalCart = ({count, proceed}) => {
 
     const navigate = useNavigate();
     function redirectHome() {
-        navigate('/search');
+        navigate('/medicines?searchValue=');
     }
     
     return (
