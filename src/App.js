@@ -28,7 +28,7 @@ function App() {
             let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
             return decodedData.role;
         }
-    
+        
     return (
         <AuthContext.Provider value={{
             isAuth,
@@ -46,13 +46,13 @@ function App() {
                     cart,
                     setCart
                 }}>
-                    <BrowserRouter>
-                        <Navbar/>
-                        <div className="App">
-                            <AppRouter/>
-                        </div>
-                        <Footer/>
-                    </BrowserRouter>
+                        <BrowserRouter>
+                            <Navbar/>
+                            <div className="App">
+                                <AppRouter/>
+                            </div>
+                            <Footer/>
+                        </BrowserRouter>
                 </CartContext.Provider>
             </SearchContext.Provider>
         </UserRoleContext.Provider>

@@ -11,6 +11,7 @@ import autoTable from "jspdf-autotable";
 import moment from "moment/moment";
 import {getPagesArray} from "../utils/pages";
 import BookingService from "../API/BookingService";
+import {useTranslation} from "react-i18next";
 
 const AllOrdersList = () => {
     const [booking, setBooking] = useState([]);
@@ -21,6 +22,7 @@ const AllOrdersList = () => {
     const [page, setPage] = useState(1);
     const [pagesArray, setPagesArray] = useState([]);
     const [updatedOrderId, setUpdatedOrderId] = useState();
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
         let newTotalPages = Math.ceil(booking.length / 10);
@@ -75,15 +77,7 @@ const AllOrdersList = () => {
         status: "",
         totalPrice: 0.00
     });
-    const [fetchHistory, isLoading, errorMedc] = useFetching(async () => {
-        let response = await UserService.getUsersHistory();
-        setBooking(response);
-    });
-
-    useEffect(() => {
-        fetchHistory();
-    }, [updatedOrderId]);
-
+    
     function getIdFromJwt (token) {
         var Buffer = require('buffer/').Buffer;
         let base64Url = token.split('.')[1]; // token you get
@@ -91,7 +85,18 @@ const AllOrdersList = () => {
         let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
         return decodedData.id;
     }
-    let userId = getIdFromJwt(sessionStorage.getItem("token"));
+    let managerId = getIdFromJwt(sessionStorage.getItem("token"));
+    
+    const [fetchHistory, isLoading, errorMedc] = useFetching(async () => {
+        let response = await UserService.getUsersHistoryByPharmacy(managerId);
+        setBooking(response);
+    });
+
+    useEffect(() => {
+        fetchHistory();
+    }, [updatedOrderId]);
+    
+
 
     function showOrder(booking){
         setSelectedOrder(booking);
@@ -145,26 +150,27 @@ const AllOrdersList = () => {
     
     return (
         <div className="orderList">
+            <div className='tableWrapper'>
             <table className="orderListTable">
                 <thead>
                 <tr>
                     <th onClick={sortByOrderNumber}>
-                        Order number
+                        {t("manageOrdersNumber")}
                     </th>
                     <th onClick={sortByUser}>
-                        User
+                        {t("manageOrdersUser")}
                     </th>
                     <th onClick={sortByDate}>
-                        Date
+                        {t("manageOrdersDate")}
                     </th>
                     <th onClick={sortByPharmacy}>
-                        Pharmacy
+                        {t("manageOrdersPharm")}
                     </th>
                     <th onClick={sortByStatus}>
-                        Status
+                        {t("manageOrdersStatus")}
                     </th>
                     <th onClick={sortByTotalPrice}>
-                        Total price
+                        {t("manageOrdersPrice")}
                     </th>
                     <th>
                         
@@ -180,6 +186,7 @@ const AllOrdersList = () => {
                 />)}
                 </tbody>
             </table>
+            </div>
             <div className="underTableBtns">
                 <div className="emptySpace newEmpty"></div>
                 <div className="paggination">
@@ -192,8 +199,8 @@ const AllOrdersList = () => {
                         })}
                 </div>
                 <div className="downloadBtns">
-                    <button onClick={onDownloadPDF}>Download pdf</button>
-                    <button className="jsonBtn" onClick={onDownloadJSON}>Download json</button>
+                    <button onClick={onDownloadPDF}>{t("downloadPDF")}</button>
+                    <button className="jsonBtn" onClick={onDownloadJSON}>{t("downloadJSON")}</button>
                 </div>
             </div>
             <Modal visible={modal} setVisible={setModal}>

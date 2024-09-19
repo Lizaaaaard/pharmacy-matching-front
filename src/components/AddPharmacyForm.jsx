@@ -1,36 +1,38 @@
 ﻿import React, {useContext, useState} from 'react';
 import {UserRoleContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const AddPharmacyForm = ({addPharmacy}) => {
     const [inputTitle, setInputTitle] = useState('');
     const [inputAddress, setInputAddress] = useState('');
     const [inputDescription, setInputDescription] = useState('');
     const [inputPhoneNumber, setInputPhoneNumber] = useState('');
+    const {t, i18n} = useTranslation();
     
     return (
         <div className="addPharmacyForm">
-            <h1>Add new pharmacy</h1>
+            <h1>{t("pharmFormTitle")}</h1>
             <input
                 type='text'
-                placeholder='Pharmacy title'
+                placeholder={t("pharmFormInputTitle")}
                 value={inputTitle}
                 onChange={e => setInputTitle(e.target.value)}
             />
             <input
                 type='text'
-                placeholder='Address'
+                placeholder={t("pharmFormInputAddress")}
                 value={inputAddress}
                 onChange={e => setInputAddress(e.target.value)}
             />
             <input
                 type ='text'
-                placeholder='Working hours'
+                placeholder={t("pharmFormInputWH")}
                 value={inputDescription}
                 onChange={e => setInputDescription(e.target.value)}
             />
             <input
                 type ='text'
-                placeholder='Phone number'
+                placeholder={t("pharmFormInputPN")}
                 value={inputPhoneNumber}
                 onChange={e => setInputPhoneNumber(e.target.value)}
             />
@@ -39,7 +41,7 @@ const AddPharmacyForm = ({addPharmacy}) => {
                 Description: inputDescription,
                 Address: inputAddress,
                 PhoneNumber: inputPhoneNumber
-            })}>Add</button>
+            })}>{t("pharmFormBtn")}</button>
         </div>
     );
 };

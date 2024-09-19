@@ -2,12 +2,13 @@
 import {CartContext, CartPriceContext} from "../context";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import {useTranslation} from "react-i18next";
 
 const CartTableRow = ({medInPharm, cart, setCart}) => {
     const {resultSum, setResultSum} = useContext(CartPriceContext);
     const [cartElement, setCartElement] = useState();
     const [count, setCount] = useState(1);
-    
+    const {t, i18n} = useTranslation();
     function findById() {
         for(let i = 0; i<cart.length;i++){
             if(cart[i].medc.id === medInPharm.medcId && cart[i].dose.id === medInPharm.doseId){
@@ -65,7 +66,7 @@ const CartTableRow = ({medInPharm, cart, setCart}) => {
                         <button className="increaseBtn" onClick={increaseCounter}><i className="bi bi-plus-square"></i></button>
                     </td>
                     <td className="totalMedInPharm">
-                        {(medInPharm.price * count).toFixed(2)} BYN
+                        {(medInPharm.price * count).toFixed(2)} {t("byn")}
                     </td>
                     <td className="deleteBtnMedInPharm">
                         <button onClick={deleteFromCart}><i className="bi bi-x-circle-fill"></i></button>

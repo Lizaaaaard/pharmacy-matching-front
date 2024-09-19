@@ -4,6 +4,7 @@ import AuthService from "../API/AuthService";
 import PharmsService from "../API/PharmsService";
 import UserService from "../API/UserService";
 import {UserContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const UserInfo = () => {
     const [userId, setUserId] = useState(0);
@@ -18,6 +19,7 @@ const UserInfo = () => {
         setUserEmail(response.email);
         setUserPhone(response.phoneNumber);
     });
+    const {t, i18n} = useTranslation();
 
     useEffect(()=>{
         fetchProfile();
@@ -34,9 +36,9 @@ const UserInfo = () => {
     
     return (
         <div className="userInfo">
-            <h1>Personal info</h1>
+            <h1>{t("personalInfoTitle")}</h1>
             <div className="profileLogin">
-                Login
+                {t("personalInfoLogin")}
                 <input
                     type='text'
                     value={userLogin}
@@ -44,7 +46,7 @@ const UserInfo = () => {
                 />
             </div>
             <div className="profileEmail">
-                Email
+                {t("personalInfoEmail")}
                 <input
                     type='text'
                     value={userEmail}
@@ -52,7 +54,7 @@ const UserInfo = () => {
                 />
             </div>
             <div className="profilePhoneNum">
-                Phone number
+                {t("personalInfoPN")}
                 <input
                     type='text'
                     value={userPhoneNumber}
@@ -60,7 +62,7 @@ const UserInfo = () => {
                 />
             </div>
             <div className="saveChangesBtn">
-                <button onClick={changeInfo}>Save changes</button>
+                <button onClick={changeInfo}>{t("saveChanges")}</button>
             </div>
         </div>
     );

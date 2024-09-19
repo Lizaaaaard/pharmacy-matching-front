@@ -5,6 +5,7 @@ import AuthService from "../API/AuthService";
 import {Link, useNavigate} from "react-router-dom";
 import Register from "../pages/Register";
 import {Buffer} from "buffer";
+import {useTranslation} from "react-i18next";
 
 const LoginForm = () => {
     const {userRole, setUserRole} = useContext(UserRoleContext);
@@ -30,6 +31,7 @@ const LoginForm = () => {
              
         
     });
+    const{t, i18n} = useTranslation();
 
     function getRoleFromJwt (token) {
         var Buffer = require('buffer/').Buffer;
@@ -54,23 +56,23 @@ const LoginForm = () => {
             <form onSubmit={login}>
                 <input
                     type='text'
-                    placeholder='Username'
+                    placeholder={t("username")}
                     id="loginValue"
                     value={inputLogin}
                     onChange={e => setInputLogin(e.target.value)}
                 />
                 <input
                     type ='password'
-                    placeholder='Password'
+                    placeholder={t("password")}
                     id="passwordValue"
                     value={inputPassword}
                     onChange={e => setInputPassword(e.target.value)}
                 />
-                <button>Submit</button>
+                <button>{t("submit")}</button>
             </form>
             <div className="loginForm__links">
 {/*                <Link to={}>Forgot your password?</Link>*/}
-                <Link to="/register">Don't have an account?</Link>
+                <Link to="/register">{t("register")}</Link>
             </div>
         </div>
     );

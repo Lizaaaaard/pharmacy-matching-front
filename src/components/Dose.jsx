@@ -1,5 +1,6 @@
 ﻿import React, {useContext, useEffect} from 'react';
 import {CartContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const Dose = ({dose, medc}) => {
     const {cart, setCart} = useContext(CartContext);
@@ -11,6 +12,7 @@ const Dose = ({dose, medc}) => {
         }
         setCart([...cart,cartElement]);
     }
+    const{t, i18n} = useTranslation();
         
     function cartIncludesMedc(medcId, doseId){
         let includes = false;
@@ -39,14 +41,14 @@ const Dose = ({dose, medc}) => {
     return (
         <tr className="dose">
             <td className="package">{dose.package}</td>
-            <td className="price">{dose.minPrice === dose.maxPrice ? dose.minPrice : dose.minPrice + " - " + dose.maxPrice} BYN</td>
-            <td className="available">available in {dose.availability} pharmac{dose.availability === 1 ? "y" : "ies"}</td>
+            <td className="price">{dose.minPrice === dose.maxPrice ? dose.minPrice : dose.minPrice + " - " + dose.maxPrice} {t("byn")}</td>
+            <td className="available">{t("availableIn")} {dose.availability} {dose.availability === 1 ? <p>{t("pharmOne")}</p> : <p>{t("pharmMore")}</p>}</td>
             {cartIncludesMedc(medc.id, dose.id) 
                 ? <td className="medcButton">
-                    <button disabled>Already in cart</button>
+                    <button disabled>{t("alreadyInCart")}</button>
                   </td>
                 : <td className="medcButton">
-                    <button className="buttonHovering" onClick={handlerClick}>Add to cart</button>
+                    <button className="buttonHovering" onClick={handlerClick}>{t("addToCart")}</button>
                   </td>
             }
         </tr>

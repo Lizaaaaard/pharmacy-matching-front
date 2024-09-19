@@ -2,6 +2,7 @@
 import {useFetching} from "../hooks/useFetching";
 import AuthService from "../API/AuthService";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const RegisterForm = () => {
     const [usernameValue, setUsernameValue] = useState('');
@@ -23,7 +24,7 @@ const RegisterForm = () => {
             redirectHome();
         }
     });
-
+    const {t, i18n} = useTranslation();
     function register (event){
         event.preventDefault();
         fetchReg();
@@ -50,40 +51,40 @@ const RegisterForm = () => {
             <form onSubmit={register}>
                 <input
                     type='text'
-                    placeholder='Username'
+                    placeholder={t("username")}
                     id="loginValue"
                     value={usernameValue}
                     onChange={e => setUsernameValue(e.target.value)}
                 />
                 <input
                     type='text'
-                    placeholder='Email'
+                    placeholder={t("email")}
                     id="emailValue"
                     value={userEmail}
                     onChange={e => setUserEmail(e.target.value)}
                 />
                 <input
                     type='text'
-                    placeholder='Phone number'
+                    placeholder={t("pn")}
                     id="numberValue"
                     value={userPhone}
                     onChange={e => setUserPhone(e.target.value)}
                 />
                 <input
                     type ='password'
-                    placeholder='Password'
+                    placeholder={t("password")}
                     id="passwordValue"
                     value={userPassword}
                     onChange={e => setUserPassword(e.target.value)}
                 />
                 <input
                     type ='password'
-                    placeholder='Repeat password'
+                    placeholder={t("repeatPassword")}
                     id="passwordValue"
                     value={repeatPassword}
                     onChange={e => setRepeatPassword(e.target.value)}
                 />
-                <button type='submit'>Register</button>
+                <button type='submit'>{t("registerUser")}</button>
             </form>
         </div>
     );

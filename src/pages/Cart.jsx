@@ -6,6 +6,7 @@ import CartService from "../API/CartService";
 import {useNavigate} from "react-router-dom";
 import {useFetching} from "../hooks/useFetching";
 import AvailablePharmaciesList from "../components/AvailablePharmaciesList";
+import {useTranslation} from "react-i18next";
 
 const Cart = () => {
     const [resultSum, setResultSum] = useState(0);
@@ -19,7 +20,7 @@ const Cart = () => {
         setMedInPharm(response);
         setSelectedMedInPharm(response[0]);
     });
-
+    const {t, i18n} = useTranslation();
     useEffect(() => {
         fetchCart();
     }, [])
@@ -73,7 +74,7 @@ const Cart = () => {
             <div className="cartPage">
                 <AvailablePharmaciesList selected={selectedMedInPharm} pharmacies={medInPharm.map(medc => medc.item1)} changePharmacy={changePharmacy}/>
                 <div>
-                    <h1 className="cartTitle">Cart</h1>
+                    <h1 className="cartTitle">{t("cart")}</h1>
                     {
                         selectedMedInPharm !== undefined ?
                             <div>
@@ -85,7 +86,7 @@ const Cart = () => {
                                 />
                             </div>
                             :
-                            <div>No such pharmacies</div>
+                            <div>{t("errNoPharm")}</div>
                     }
 
                 </div>

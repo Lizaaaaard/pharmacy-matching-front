@@ -1,6 +1,8 @@
 ﻿import Dose from "./Dose";
+import {useTranslation} from "react-i18next";
 
 const MedcItem = ({medc}) => {
+    const{t, i18n} = useTranslation();
     
     return (
         <div className="medicine">
@@ -9,11 +11,11 @@ const MedcItem = ({medc}) => {
                     <tr>
                         <td className="name">
                             <strong>{medc.title}</strong>
-                            <div className="producer">Was produced by "{medc.producer.company}", {medc.producer.country}</div>
+                            <div className="producer">{t("wasProdBy")} "{medc.producer.company}", {medc.producer.country}</div>
                         </td>
                         <td className="notes">{medc.body}</td>
                         <td className="prescription">
-                            <strong>{medc.needPrescription ? 'Prescription needed' : 'No prescription needed'}</strong>
+                            <strong>{medc.needPrescription ? <p>{t("prescrNeeded")}</p> : <p>{t("noPrescrNeeded")}</p>}</strong>
                         </td>
                     </tr>
                 </tbody>

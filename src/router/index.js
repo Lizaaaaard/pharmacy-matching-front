@@ -7,6 +7,7 @@ import Cart from "../pages/Cart";
 import Profile from "../pages/Profile";
 import ManageOrders from "../pages/ManageOrders";
 import MedcList from "../components/MedcList";
+import ManageRoles from "../pages/ManageRoles";
 
 
 export const routes = [
@@ -18,5 +19,6 @@ export const routes = [
     {path:'/register', component:Register, exact:true},
     {path:'/cart', component:Cart, exact:true},
     {path:'/profile', component:Profile, exact:true},
-    {path:'/manage-orders', component:ManageOrders, exact:true}
+    {path:'/manage-orders', component:ManageOrders, exact:true},
+    {path:'/manage-roles', component:ManageRoles, exact: true}
 ]

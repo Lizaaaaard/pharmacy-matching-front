@@ -7,12 +7,5 @@ export default class MedcService {
         const response = await axios.get(API_URL + '/medicines');
         return response.data;
     }
-
-    /*static async getTotalCount() {
-        const config = {
-            method: 'get',
-            url: API_URL + '/medicines/count'
-        }
-        return await axios.get(API_URL + '/medicines/count');
-    }*/
+    
 }

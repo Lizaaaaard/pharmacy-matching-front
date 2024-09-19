@@ -8,6 +8,7 @@ import Filter from "./Filter";
 import SearchTitle from "./SearchTitle";
 import Loader from "./UI/Loader/Loader";
 import {CartContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const MedcList = ({search}) => {
     const [medc, setMedc] = useState([]);
@@ -23,6 +24,7 @@ const MedcList = ({search}) => {
             setMedc(response);
             setFilteredMedc(response);
     });
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
         fetchMedc();
@@ -136,7 +138,7 @@ const MedcList = ({search}) => {
                                 { pageMedc.length === 0
                                     ? <div>
                                         <h1 className="noMedcMsg">
-                                            There are no medicines satisfying such criterias.
+                                            {t("noMedcByCrit")}
                                         </h1>
                                     </div>
                                     : <div>

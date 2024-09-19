@@ -1,10 +1,13 @@
-﻿import React from 'react';
+﻿import React, {useContext} from 'react';
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
+    const {t, i18n} = useTranslation();
+    
     return (
         <footer>
             <div className="footer">
-                ©2023 Pharmacy Matching. All rights reserved.
+                {t("allRightsReserved")}
             </div>
         </footer>
         

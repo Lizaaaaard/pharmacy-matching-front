@@ -6,6 +6,7 @@ import {getPagesArray} from "../utils/pages";
 import NewPharmModal from "./UI/Modal/NewPharmModal";
 import AddPharmacyForm from "./AddPharmacyForm";
 import {UserRoleContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const PharmsList = () => {
     const {userRole, setUserRole} = useContext(UserRoleContext);
@@ -16,6 +17,7 @@ const PharmsList = () => {
     const [limit, setLimit] = useState(8);
     const [page, setPage] = useState(1);
     const [pharms, setPharms] = useState([]);
+    const {t, i18n} = useTranslation();
     const [pagesArray, setPagesArray] = useState([]);
     const [fetchPharms, isLoading, errorMedc] = useFetching(async () => {
         let response = await PharmsService.getAll(limit, page);
@@ -56,16 +58,16 @@ const PharmsList = () => {
                 <thead>
                 <tr>
                     <th className="phHeaderName pharmaciesHeader">
-                        Pharmacy Name
+                        {t("tablePharmName")}
                     </th>
                     <th className="phHeaderAddress pharmaciesHeader">
-                        Address
+                        {t("tablePharmAddress")}
                     </th>
                     <th className="phHeaderWH pharmaciesHeader">
-                        Working Hours
+                        {t("tablePharmWH")}
                     </th>
                     <th className="phHeaderPhNum pharmaciesHeader">
-                        Phone Number
+                        {t("tablePharmPN")}
                     </th>
                 </tr>
                 </thead>
@@ -89,7 +91,7 @@ const PharmsList = () => {
                         userRole === "Admin"
                             ?
                             <div className="addPharmacyBtn">
-                                <button onClick={() => setModal(true)}>Add pharmacy</button>
+                                <button onClick={() => setModal(true)}>{t("addPharmBtn")}</button>
                                 <NewPharmModal visible={modal} setVisible={setModal}>
                                     <AddPharmacyForm addPharmacy={addPharmacy}/>
                                 </NewPharmModal>

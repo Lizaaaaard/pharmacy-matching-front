@@ -1,6 +1,9 @@
 ﻿import React from 'react';
+import {useTranslation} from "react-i18next";
 
 const OrderDetailsRow = ({order}) => {
+    const{t, i18n} = useTranslation();
+    
     return (
         <tr>
             <td>
@@ -13,7 +16,7 @@ const OrderDetailsRow = ({order}) => {
                 {order.amount}
             </td>
             <td>
-                {order.price} BYN
+                {order.price} {t("byn")}
             </td>
         </tr>
     );

@@ -39,4 +39,18 @@ export default class UserService {
         const response = await axios.get(API_URL + '/users/orders');
         return response.data;
     }
+
+    static async getUsersHistoryByPharmacy(managerId) {
+        const response = await axios.get(API_URL + '/users/orders/pharmacy', {
+            params: {
+                managerId: managerId
+            }
+        });
+        return response.data;
+    }
+
+    static async getAllUsers() {
+        const response = await axios.get(API_URL + '/users');
+        return response.data;
+    }
 }

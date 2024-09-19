@@ -1,11 +1,13 @@
 ﻿import React, {useContext, useEffect, useState} from 'react';
 import CartTableRow from "./CartTableRow";
 import {CartContext, CartPriceContext} from "../context";
+import {useTranslation} from "react-i18next";
 
 const CartTable = ({medInPharm}) => {
     const {cart, setCart} = useContext(CartContext);
     const {resultSum, setResultSum} = useContext(CartPriceContext);
-
+    const {t, i18n} = useTranslation();
+    
     useEffect(() => {
         let totalSum = 0;
         for(let i = 0; i < medInPharm.item2.length; i++){
@@ -24,22 +26,22 @@ const CartTable = ({medInPharm}) => {
                     <thead className="cartHeader">
                     <tr>
                         <th className="cartItemName">
-                            Added items
+                            {t("addedItems")}
                         </th>
                         <th className="cartItemDose">
-                            Dose form
+                            {t("doseForm")}
                         </th>
                         <th className="cartItemProducer">
-                            Producer
+                            {t("producer")}
                         </th>
                         <th className="cartItemPrice">
-                            Price
+                            {t("price")}
                         </th>
                         <th className="cartItemAmount">
-                            Quantity
+                            {t("quantity")}
                         </th>
                         <th className="cartItemSum">
-                            Total
+                            {t("total")}
                         </th>
                         <th className="cartItemDel">
                         </th>

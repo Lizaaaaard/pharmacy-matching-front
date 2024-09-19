@@ -5,11 +5,14 @@ import ProfileInfo from "../components/ProfileInfo";
 import {UserContext} from "../context";
 import Modal from "../components/UI/Modal/Modal";
 import OrderDetails from "../components/OrderDetails";
+import {useTranslation} from "react-i18next";
 
 const Profile = () => {
+    const{t, i18n} = useTranslation();
+    
     return (
         <div className="Profile">
-            <h1>Your personal profile</h1>
+            <h1>{t("profileInfoTitle")}</h1>
             <ProfileInfo/>
         </div>
     );

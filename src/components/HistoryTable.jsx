@@ -4,6 +4,7 @@ import {useFetching} from "../hooks/useFetching";
 import UserService from "../API/UserService";
 import Modal from "./UI/Modal/Modal";
 import OrderDetails from "./OrderDetails";
+import {useTranslation} from "react-i18next";
 
 const HistoryTable = () => {
     const [booking, setBooking] = useState([]);
@@ -17,11 +18,10 @@ const HistoryTable = () => {
         totalPrice: 0.00
     });
     const [fetchHistory, isLoading, errorMedc] = useFetching(async () => {
-        console.log(userId);
         let response = await UserService.getHistory(userId);
        setBooking(response); 
     });
-
+    const {t, i18n} = useTranslation();
     useEffect(() => {
         fetchHistory();
     }, []);
@@ -46,19 +46,19 @@ const HistoryTable = () => {
                 <thead>
                     <tr>
                         <th>
-                            Order number
+                            {t("manageOrdersNumber")}
                         </th>
                         <th>
-                            Date
+                            {t("manageOrdersDate")}
                         </th>
                         <th>
-                            Pharmacy
+                            {t("manageOrdersPharm")}
                         </th>
                         <th>
-                            Status
+                            {t("manageOrdersStatus")}
                         </th>
                         <th>
-                            Total price
+                            {t("manageOrdersPrice")}
                         </th>
                     </tr>
                 </thead>

@@ -1,0 +1,22 @@
+﻿.rolesModal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    background: rgba(0,0,0,0.4);
+}
+
+.rolesMOdalContent{
+    padding: 25px;
+    background: #F5F5F5;
+    border-radius: 16px;
+    min-width: 300px;
+}
+
+.rolesModal.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
